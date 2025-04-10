@@ -1,0 +1,45 @@
+<%- include('partials/header') %>
+
+<section class="task-form">
+  <% if (errors && errors.length > 0) { %>
+    <ul class="errors">
+      <% errors.forEach(error => { %>
+        <li><%= error %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <form action="/tasks" method="POST">
+    <input type="text" name="title" placeholder="Task title" value="<%= formData?.title || '' %>" required>
+    <textarea name="description" placeholder="Optional description"><%= formData?.description || '' %></textarea>
+    <button type="submit">Add Task</button>
+  </form>
+</section>
+
+<section class="task-list">
+  <% if (tasks.length === 0) { %>
+    <p>No tasks yet. Start by adding one above!</p>
+  <% } else { %>
+    <ul>
+      <% tasks.forEach(task => { %>
+        <li class="<%= task.completed ? 'completed' : '' %>">
+          <form action="/tasks/<%= task.id %>?_method=PATCH" method="POST">
+            <button type="submit"><%= task.completed ? '✅' : '⬜' %></button>
+          </form>
+          <div class="task-info">
+            <h3><%= task.title %></h3>
+            <% if (task.description) { %>
+              <p><%= task.description %></p>
+            <% } %>
+            <small><%= new Date(task.created_at).toLocaleString() %></small>
+          </div>
+          <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST">
+            <button class="delete" type="submit">🗑️</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,31 @@
+{
+  "name": "taskmanager",
+  "version": "1.0.0",
+  "description": "App to manage task.",
+  "homepage": "https://github.com/DarwinRam/taskmantest#readme",
+  "bugs": {
+    "url": "https://github.com/DarwinRam/taskmantest/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DarwinRam/taskmantest.git"
+  },
+  "license": "ISC",
+  "author": "Darwin Ramos",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start":"nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "method-override": "^3.0.0",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
